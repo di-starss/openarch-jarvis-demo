@@ -29,7 +29,7 @@
 #
 # VARS
 #
-variable "img_url" {}
+variable "vyos_img_url" {}
 variable "qemu_host" {}
 
 variable "vyos_ams0_mgmt_ipaddress" {}
@@ -55,6 +55,7 @@ variable "nginx_rg0_mgmt_gateway" {}
 module "jarvis-vyos-ams0" {
   source = "github.com/di-starss/openarch-vm-vyos"
 
+  img_url = var.vyos_img_url
   qemu_host = var.qemu_host
 
   vm_name = "jarvis-vyos-ams0"
@@ -74,7 +75,7 @@ module "jarvis-vyos-ams0" {
 module "jarvis-vyos-rg0" {
   source = "github.com/di-starss/openarch-vm-vyos"
   
-  img_url = var.img_url
+  img_url = var.vyos_img_url
   qemu_host = var.qemu_host
 
   vm_name = "jarvis-vyos-rg0"
@@ -97,7 +98,6 @@ module "jarvis-vyos-rg0" {
 module "jarvis-nginx-ams0" {
   source = "github.com/di-starss/openarch-vm-debian"
   
-  img_url = var.img_url
   qemu_host = var.qemu_host
 
   vm_name = "jarvis-nginx-ams0"
