@@ -29,6 +29,8 @@
 #
 # VARS
 #
+variable "vyos_mgmt_password" {}
+
 variable "vyos_img_url" {}
 variable "qemu_host" {}
 
@@ -54,10 +56,12 @@ variable "nginx_rg0_mgmt_gateway" {}
 #
 module "jarvis-vyos-ams0" {
   source = "github.com/di-starss/openarch-vm-vyos"
-
+  
+  mgmt_password = var.vyos_mgmt_password
+    
   img_url = var.vyos_img_url
   qemu_host = var.qemu_host
-
+    
   vm_name = "jarvis-vyos-ams0"
   vm_cpu = 2
   vm_mem = 2048
@@ -75,6 +79,8 @@ module "jarvis-vyos-ams0" {
 module "jarvis-vyos-rg0" {
   source = "github.com/di-starss/openarch-vm-vyos"
   
+  mgmt_password = var.vyos_mgmt_password
+
   img_url = var.vyos_img_url
   qemu_host = var.qemu_host
 
